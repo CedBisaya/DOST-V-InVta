@@ -1,28 +1,20 @@
-InVta
+InVta — Event Management System
+The Event Management System is a web-system is designed for Department of Science and Technology – Region V (DOST-V) to manage users, events, attendance and reports. This system will simplify the event process by digitizing manual workflows and providing a centralized hub for coordination.
 
-Event Management System — Web Portal
-
-This is the Web Management Portal for the Department of Science and Technology – Region V (DOST-V) to manage Event designed to streamline complex event lifecycles. While the broader system includes a mobile application for end-users, this specific portal serves as the "Command Center" for high-level administration and coordination.
-
-Built with Laravel 12, Livewire, and Tailwind CSS, this platform provides a reactive, modern interface for managing parent-child event structures, automated logistics, and attendee engagement.
 
 Administrative Roles
-This web portal is tailored specifically for two primary administrative tiers:
+Super Admin: Provides full system oversight, including the management of event managers, comprehensive reporting, activity logs, and global configurations.
 
-Super Admin: Full system oversight, including event manager management, reports, activity logs and other configurations.
+Event Manager: Offers dedicated tools for creating and monitoring specific events, managing Staff Marshals or Exhibitors, and generating event-specific reports.
 
-Event Manager: Dedicated tools for creating and monitoring specific events, managing Staff Marshals/Exhibitors, and reports.
 
 Core Web Features
--Hierarchical Event Planning: Robust support for "Parent-Child" event structures to manage multi-session or recurring events.
+Hierarchical Event Planning: Robust support for "Parent-Child" event structures to manage multi-session or recurring events.
 
--Gamification: A centralized dashboard to configure the Points System, allowing managers to incentivize attendee participation.
+Digital Attendance Checking: QR code scanning functionality to efficiently verify and track user participation.
 
--Automated Certification: Integrated logic for the instant generation and distribution of digital certificates upon event completion.
+Gamification: A centralized dashboard to configure the Points System, allowing managers to incentivize attendee engagement.
 
--User Friendly Interface: For a beter user experience, a simple and friendly design is a must.
+Automated Certification: Integrated logic for the instant generation and distribution of digital certificates upon event completion.
 
-
-Database: MySQL
-
-Language: PHP & JavaScript
+User-Friendly Interface: A simple and intuitive design focused on providing a superior user experience.
