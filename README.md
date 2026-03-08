@@ -1,14 +1,18 @@
-InVta — Event Management System
+# InVta
+Event Management System
+---  
 The Event Management System is a web-system is designed for Department of Science and Technology – Region V (DOST-V) to manage users, events, attendance and reports. This system will simplify the event process by digitizing manual workflows and providing a centralized hub for coordination.
 
-
+---  
 Administrative Roles
+---  
 Super Admin: Provides full system oversight, including the management of event managers, comprehensive reporting, activity logs, and global configurations.
 
 Event Manager: Offers dedicated tools for creating and monitoring specific events, managing Staff Marshals or Exhibitors, and generating event-specific reports.
 
-
+---  
 Core Web Features
+---  
 Hierarchical Event Planning: Robust support for "Parent-Child" event structures to manage multi-session or recurring events.
 
 Digital Attendance Checking: QR code scanning functionality to efficiently verify and track user participation.
