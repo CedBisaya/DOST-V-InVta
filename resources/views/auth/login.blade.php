@@ -14,62 +14,63 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <form method="POST" action="{{ route('login') }}" class="mx-auto w-full max-w-[400px]">
 
-        <!-- Account ID -->
-        <div class="mb-4">
-            <x-input-label for="email" value="Account ID" />
-            <x-text-input id="email"
-                class="block mt-1 w-full border-gray-300 rounded-md shadow-sm"
-                type="email"
-                name="email"
-                :value="old('email')"
-                required
-                autofocus
-                autocomplete="username" />
+    @csrf
 
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    <!-- Account ID -->
+    <div class="mb-4">
+        <x-input-label for="email" value="Account ID" />
+        <x-text-input id="email"
+            class="block mt-1 w-full border-gray-300 rounded-md shadow-sm"
+            type="email"
+            name="email"
+            :value="old('email')"
+            required
+            autofocus
+            autocomplete="username" />
 
-        <!-- Password -->
-        <div class="mb-4">
-            <x-input-label for="password" value="Password" />
-            <x-text-input id="password"
-                class="block mt-1 w-full border-gray-300 rounded-md shadow-sm"
-                type="password"
-                name="password"
-                required
-                autocomplete="current-password" />
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <!-- Password -->
+    <div class="mb-4">
+        <x-input-label for="password" value="Password" />
+        <x-text-input id="password"
+            class="block mt-1 w-full border-gray-300 rounded-md shadow-sm"
+            type="password"
+            name="password"
+            required
+            autocomplete="current-password" />
 
-        <!-- Remember Me -->
-        <div class="mb-4 flex items-center">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me"
-                       type="checkbox"
-                       class="rounded border-gray-300 text-blue-500 shadow-sm focus:ring-blue-500"
-                       name="remember">
+        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    </div>
 
-                <span class="ml-2 text-sm text-gray-600">Remember me</span>
-            </label>
+    <!-- Remember Me -->
+    <div class="mb-4 flex items-center">
+        <label for="remember_me" class="inline-flex items-center">
+            <input id="remember_me"
+                   type="checkbox"
+                   class="rounded border-gray-300 text-blue-500 shadow-sm focus:ring-blue-500"
+                   name="remember">
 
-            <a href="{{ route('password.request') }}"
-               class="ml-auto text-sm text-blue-500" style="color:#00AEEF;">
-                Forgot password?
-            </a>
-        </div>
+            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+        </label>
 
-        <!-- Sign Up -->
-        <div class="mb-4">
-            <a href="{{ route('register') }}"
-               class="w-full block text-center bg-[#00AEEF] hover:bg-[#0095cc] text-white font-semibold py-2 rounded-md">
-                SIGN IN
-            </a>
-        </div>
+        <a href="{{ route('password.request') }}"
+           class="ml-auto text-sm text-blue-500" style="color:#00AEEF;">
+            Forgot password?
+        </a>
+    </div>
 
-    </form>
+    <!-- Sign In -->
+    <div class="mb-4">
+        <button type="submit"
+            class="w-full bg-[#00AEEF] hover:bg-[#0095cc] text-white font-semibold py-2 rounded-md">
+            SIGN IN
+        </button>
+    </div>
+
+</form>
 
 </x-guest-layout>

@@ -15,18 +15,22 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <body class="font-poppins text-gray-900 antialiased">
+        <div class="min-h-screen flex flex-col justify-start items-center bg-gray-100 px-4 sm:px-0 pt-20">
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            {{ $slot }}
+            <!-- Login / Verification Box -->
+            <div class="w-full max-w-md sm:max-w-lg md:max-w-xl bg-white shadow-lg rounded-lg p-8 sm:p-10 flex flex-col justify-between">
+                {{ $slot }}
+            </div>
+
+            <!-- Footer below the box -->
+            <p class="text-center text-xs text-black-400 mt-6 sm:mt-8">
+                © 2026 All rights reserved<br>
+                Developed by Department of Science and Technology - Regional Office V<br>
+                Management Information Services Unit
+            </p>
+
         </div>
-
-        <p class="text-center text-xs text-black-400 mt-20">
-            © 2026 All rights reserved<br>
-            Developed by Department of Science and Technology - Regional Office V<br>
-            Management Information Services Unit
-        </p>
-
-    </div>
+</body>
 </body>
 </html>
