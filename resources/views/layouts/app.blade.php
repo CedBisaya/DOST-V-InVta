@@ -1,36 +1,43 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app.name', 'InVta') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="flex bg-gray-100">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow h-screen flex flex-col">
+        <div class="p-4 text-2xl font-bold flex items-center">
+            <img src="{{ asset('logo.png') }}" alt="Logo" class="w-8 mr-2">
+            InVta
         </div>
-    </body>
+        <nav class="flex-1 px-4 py-6">
+            <a href="{{ route('dashboard') }}" class="block py-2 px-3 rounded hover:bg-blue-100 {{ request()->routeIs('dashboard') ? 'bg-blue-200' : '' }}">Dashboard</a>
+            <a href="#" class="block py-2 px-3 rounded hover:bg-blue-100">Event Manager</a>
+            <a href="#" class="block py-2 px-3 rounded hover:bg-blue-100">Reports</a>
+            <a href="#" class="block py-2 px-3 rounded hover:bg-blue-100">Logs</a>
+        </nav>
+        <div class="p-4 border-t">
+            <a href="{{ route('logout') }}" class="block py-2 px-3 text-red-600">Sign Out</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        <header class="flex justify-between items-center mb-6">
+            <div>{{ now()->format('l, F d, Y h:i A') }}</div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1">1</span>
+                    <button><i class="fas fa-bell"></i></button>
+                </div>
+                <div>{{ auth()->user()->name }} <span class="text-sm text-gray-500">{{ auth()->user()->role ?? 'Admin' }}</span></div>
+            </div>
+        </header>
+
+        @yield('content')
+    </div>
+</body>
 </html>
