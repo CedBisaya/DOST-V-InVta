@@ -1,48 +1,99 @@
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Update Password') }}
-        </h2>
+<div class="bg-blue-50/50 border border-blue-100 rounded-lg p-4 mb-6 flex items-start">
+    <svg class="w-5 h-5 text-cyan-500 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <p class="text-sm text-gray-500">Please note that you must enter your current password before creating a new password.</p>
+</div>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
-    </header>
+<form method="post" action="{{ route('password.update') }}" class="space-y-6">
+    @csrf
+    @method('put')
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
-        @csrf
-        @method('put')
-
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-tight mb-1">Current Password<span class="text-red-500">*</span></label>
+            <div class="relative group">
+                <input type="password" id="current_password" name="current_password"
+                       class="w-full border-gray-100 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all pr-10">
+                <button type="button" onclick="togglePassword('current_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-cyan-500 transition-colors">
+                    <svg class="w-5 h-5 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                </button>
+            </div>
+            @error('current_password', 'updatePassword') <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
         </div>
 
         <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-tight mb-1">New Password<span class="text-red-500">*</span></label>
+            <div class="relative group">
+                <input type="password" id="password" name="password" 
+                       class="w-full border-gray-100 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all pr-10">
+                <button type="button" onclick="togglePassword('password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center font-bold text-gray-500 mb-1 hover:text-cyan-500 transition-colors">
+                    <svg class="w-5 h-5 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                </button>
+            </div>
+            @error('password', 'updatePassword') <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
+        <div>
+            <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-tight mb-1">Confirm Password<span class="text-red-500">*</span></label>
+            <div class="relative group">
+                <input type="password" id="password_confirmation" name="password_confirmation" 
+                       class="w-full border-gray-100 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all pr-10">
+                <button type="button" onclick="togglePassword('password_confirmation', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-cyan-500 transition-colors">
+                    <svg class="w-5 h-5 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                </button>
+            </div>
         </div>
-    </form>
-</section>
+    </div>
+
+    <div class="flex justify-end mt-8">
+        <button type="submit" class="bg-dost-cyan hover:bg-dost-blue text-white font-bold py-2.5 px-8 rounded-lg text-xs uppercase tracking-widest transition-all shadow-md active:scale-95">
+            Save Changes
+        </button>
+    </div>
+</form>
+
+{{-- SUCCESS MODAL --}}
+@if(session('status') === 'password-updated')
+<div id="password-success-modal" class="fixed inset-0 flex items-center justify-center z-[9999] transition-opacity duration-300">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div class="bg-white rounded-[2rem] shadow-2xl p-10 max-w-sm w-full mx-4 relative transform transition-all scale-100 flex flex-col items-center">
+        <button onclick="closePasswordModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div class="w-24 h-24 rounded-full border-[6px] border-green-500 flex items-center justify-center mb-6">
+            <svg class="w-14 h-14 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <h3 class="text-[24px] font-black text-green-500 tracking-tight text-center leading-tight">
+            Password Changed Successfully!
+        </h3>
+    </div>
+</div>
+
+<script>
+    function closePasswordModal() {
+        const modal = document.getElementById('password-success-modal');
+        if(modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => { modal.remove(); }, 300);
+        }
+    }
+    setTimeout(closePasswordModal, 3000);
+</script>
+@endif
+
+{{-- JS PARA SA TOGGLE EYE ICON --}}
+<script>
+    function togglePassword(inputId, button) {
+        const input = document.getElementById(inputId);
+        const icon = button.querySelector('.eye-icon');
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />';
+        } else {
+            input.type = 'password';
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+        }
+    }
+</script>
