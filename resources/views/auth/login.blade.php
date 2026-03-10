@@ -17,7 +17,7 @@
     @endif
 
     <form method="POST" action="{{ route('login') }}" class="mx-auto w-full max-w-[320px] sm:max-w-[400px]">
-        @csrf
+        @csrf 
 
         <div class="mb-4">
             <label for="email" class="block text-sm font-semibold text-gray-700 uppercase tracking-tight">Account ID</label>
@@ -82,6 +82,9 @@
                     class="w-full bg-[#00AEEF] hover:bg-[#0095cc] text-white font-bold py-3 rounded-lg transition-all active:scale-[0.97] shadow-lg uppercase tracking-widest text-xs sm:text-sm">
                 SIGN IN
             </button>
+            <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:text-gray-900">
+    Don't have an account? Sign Up
+</a>
         </div>
     </form>
 
