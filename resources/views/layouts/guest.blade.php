@@ -36,7 +36,7 @@
     </div>
 
         <div class="flex-1 flex items-center justify-center py-2">
-            <div class="z-10 w-full max-w-lg bg-white shadow-2xl rounded-[2rem] border border-gray-100 relative overflow-hidden flex flex-col">
+            <div class="z-10 w-full max-w-lg bg-white shadow-2xl rounded-[15px] border border-gray-100 relative overflow-hidden flex flex-col">
                 
                 <div class="w-full h-14 sm:h-13 shrink-0" 
                     style="background-image: url('{{ asset('images/dost_bar.png') }}'); 
