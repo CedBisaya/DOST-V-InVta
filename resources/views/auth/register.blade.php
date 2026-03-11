@@ -9,8 +9,8 @@
 
     <div class="text-center mb-6">
         <img src="{{ asset('images/dost-logo.png') }}"
-             alt="DOST Logo"
-             class="mx-auto w-[184px] h-[100px]">
+            alt="DOST Logo"
+            class="mx-auto w-[184px] h-[100px]">
 
         <p class="font-poppins font-bold text-[20px] mt-1 text-[#00AEEF]">
             Create Account
