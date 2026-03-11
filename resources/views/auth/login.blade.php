@@ -79,9 +79,11 @@
                     class="w-full bg-[#00AEEF] hover:bg-[#0095cc] text-white font-bold py-3 rounded-lg transition-all active:scale-[0.97] shadow-lg uppercase tracking-widest text-xs sm:text-sm">
                 SIGN IN
             </button>
-            <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:text-gray-900">
-    Don't have an account? Sign Up
-</a>
+        </div>
+        <div class="mt-4 text-center">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                Already have an account? Log in
+            </a>
         </div>
     </form>
 
