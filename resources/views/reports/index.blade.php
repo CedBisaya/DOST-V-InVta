@@ -23,7 +23,7 @@
                         <input type="text" placeholder="Search" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-cyan-500 outline-none">
                     </div>
 
-                  <div class="flex items-center text-[12px] whitespace-nowrap self-end sm:self-auto">
+                <div class="flex items-center text-[12px] whitespace-nowrap self-end sm:self-auto">
                         <span class="text-gray-400">Filter by :</span>
                         <div class="flex items-center ml-2 relative group cursor-pointer bg-gray-50 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-all">
                             <span id="dateDisplay" class="font-medium text-gray-700 group-hover:text-dost-cyan transition-colors mr-2">
