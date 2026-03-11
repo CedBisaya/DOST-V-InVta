@@ -15,7 +15,7 @@
                 </svg>
             </div>
             <div class="min-w-0 flex-1">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Total Managers</p>
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Total Users</p>
                 <p class="text-2xl lg:text-3xl font-bold text-gray-800 truncate">{{ $totalManagers ?? 0 }}</p>
             </div>
         </div>
@@ -60,7 +60,7 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
        <div class="p-6 border-b border-gray-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
     <div class="flex items-center space-x-3">
-        <h3 class="text-lg font-bold text-dost-blue">Event Manager</h3>
+        <h3 class="text-lg font-bold text-dost-blue">Users</h3>
     </div>
 
     <div class="relative w-full sm:w-64 lg:w-80 group">
@@ -123,7 +123,7 @@
                                 </svg>
                             </div>
                             <div class="text-center">
-                                <p class="text-gray-500 font-bold text-sm">No managers found</p>
+                                <p class="text-gray-500 font-bold text-sm">No Users found</p>
                                 <p class="text-gray-400 text-xs">There are no records to display.</p>
                             </div>
                         </div>
@@ -145,16 +145,5 @@
             </div>
         </div>
     </div>
-
-    <footer class="mt-12 pb-6">
-        <div class="flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-2 text-[11px] text-gray-500 tracking-wide border-t border-gray-200 pt-6">
-            <span class="font-semibold">© {{ date('Y') }} All rights reserved.</span>
-            <span class="hidden md:inline text-gray-300">|</span>
-            <span>Department of Science and Technology - Region V</span>
-            <span class="hidden md:inline text-gray-300">|</span>
-            <span class="text-gray-400">MIS Unit</span>
-        </div>
-    </footer>
-    
 </div>
 @endsection
