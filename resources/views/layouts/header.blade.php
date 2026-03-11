@@ -10,8 +10,8 @@
                 </svg>
             </button>
 
-            <div class="hidden sm:flex flex-col justify-center shrink-0" 
-                 x-data="{ 
+            <div class="flex flex-col sm:flex-col justify-center shrink-0 w-full sm:w-64" 
+                x-data="{ 
                     day: '', 
                     dateStr: '',
                     updateClock() {
@@ -27,8 +27,8 @@
                             hour12: true 
                         });
                     }
-                 }" 
-                 x-init="updateClock(); setInterval(() => updateClock(), 1000)">
+                }" 
+                x-init="updateClock(); setInterval(() => updateClock(), 1000)">
                 <span class="text-sm font-bold leading-none tracking-tight" x-text="day"></span>
                 <span class="text-[10px] font-medium opacity-80 uppercase tracking-wider mt-0.5" x-text="dateStr"></span>
             </div>
@@ -71,14 +71,14 @@
                 </button>
 
                 <div x-show="open" 
-                     x-transition:enter="transition ease-out duration-100"
-                     x-transition:enter-start="transform opacity-0 scale-95"
-                     x-transition:enter-end="transform opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-75"
-                     x-transition:leave-start="transform opacity-100 scale-100"
-                     x-transition:leave-end="transform opacity-0 scale-95"
-                     class="absolute right-0 top-full mt-2 w-44 bg-white rounded-md shadow-lg py-1 z-30 border border-gray-200"
-                     style="display: none;">
+                    x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95"
+                    class="absolute right-0 top-full mt-2 w-44 bg-white rounded-md shadow-lg py-1 z-30 border border-gray-200"
+                    style="display: none;">
                     
                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
                         Profile

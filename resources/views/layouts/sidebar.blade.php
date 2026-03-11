@@ -1,7 +1,7 @@
 <div x-show="sidebarOpen" 
-     @click="sidebarOpen = false" 
-     x-cloak
-     class="fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300">
+    @click="sidebarOpen = false" 
+    x-cloak
+    class="fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300">
 </div>
 
 <aside 
@@ -42,7 +42,7 @@
 
         @foreach($navItems as $item)
             <a href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}" 
-               class="group relative flex items-center px-3 py-2.5 text-gray-500 hover:bg-dost-hover hover:text-dost-cyan transition-all duration-200 overflow-hidden">
+            class="group relative flex items-center px-3 py-2.5 text-gray-500 hover:bg-dost-hover hover:text-dost-cyan transition-all duration-200 overflow-hidden">
                 <div class="flex items-center justify-center shrink-0 w-6">
                     <svg class="w-5 h-5 text-gray-400 group-hover:text-dost-cyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}" />
@@ -50,7 +50,7 @@
                 </div>
                 
                 <span class="ml-3 text-[13px] font-medium tracking-wide whitespace-nowrap transition-all duration-300"
-                      :class="sidebarOpen ? 'opacity-100 visible' : 'lg:opacity-0 lg:invisible lg:w-0 lg:ml-0'">
+                    :class="sidebarOpen ? 'opacity-100 visible' : 'lg:opacity-0 lg:invisible lg:w-0 lg:ml-0'">
                     {{ $item['name'] }}
                 </span>
 
@@ -72,7 +72,7 @@
             </div>
 
             <span class="ml-4 text-[13px] font-bold whitespace-nowrap transition-all duration-300"
-                  :class="sidebarOpen ? 'opacity-100 visible' : 'lg:opacity-0 lg:invisible lg:w-0 lg:ml-0'">
+                :class="sidebarOpen ? 'opacity-100 visible' : 'lg:opacity-0 lg:invisible lg:w-0 lg:ml-0'">
                 Sign Out
             </span>
         </button>
