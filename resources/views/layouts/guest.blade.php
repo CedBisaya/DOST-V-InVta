@@ -30,12 +30,7 @@
         <div class="flex-1 flex items-center justify-center py-4">
             <div class="z-10 w-full max-w-lg bg-white shadow-2xl relative overflow-hidden flex flex-col rounded-lg">
                 
-                <div class="w-full h-14 sm:h-13 shrink-0" 
-                     style="background-image: url('{{ asset('images/dost_bar.png') }}'); 
-                            background-size: cover; 
-                            background-repeat: no-repeat;
-                            background-position: center;">
-                </div>
+              <div class="w-full h-14 sm:h-13 shrink-0" style="background-image: url('{{ asset('images/dost_bar.png') }}'); background-size: cover; background-position: center;"></div>
 
                 <div class="px-6 sm:px-12 pb-6 pt-2">
                     {{ $slot }}
@@ -43,7 +38,7 @@
             </div>
         </div>
 
-       <div class="text-center text-[9px] py-2 shrink-0">
+        <div class="text-center text-[9px] py-2 shrink-0">
             <p>© {{ date('Y') }} All rights reserved</p>
             <p>Developed by Department of Science and Technology - Regional Office V</p>
             <p>Management Information Services Unit</p>

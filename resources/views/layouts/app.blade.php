@@ -11,48 +11,23 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script>
-        (function() {
-            const isMobile = window.innerWidth < 1024;
-            const savedState = localStorage.getItem('sidebarState');
-            
-            let initialState;
-            if (isMobile) {
-                initialState = false;
-            } else {
-                initialState = savedState === null ? true : savedState === 'true';
-            }
-            
-            if (!initialState && !isMobile) {
-                document.documentElement.classList.add('sidebar-collapsed');
-            }
-            window.initialSidebarState = initialState;
-        })();
-    </script>
-
-    <style>
-        [x-cloak] { display: none !important; }
-        
-        @media (max-width: 1023px) {
-            aside { transform: translateX(-100%) !important; }
-            aside.translate-x-0 { transform: translateX(0) !important; }
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar-collapsed aside { width: 4rem !important; }
-            .sidebar-collapsed aside span { display: none !important; }
-            .sidebar-collapsed aside .shrink-0 img { opacity: 0; width: 0; }
-        }
-    </style>
 </head>
 <body class="bg-gray-100 h-screen antialiased overflow-hidden" 
-      x-data="{ sidebarOpen: window.initialSidebarState }" 
-      x-init="$watch('sidebarOpen', val => {
+      x-data="{ 
+          sidebarOpen: localStorage.getItem('sidebarState') === null ? true : localStorage.getItem('sidebarState') === 'true' 
+      }" 
+      x-init="
           if (window.innerWidth >= 1024) {
-              localStorage.setItem('sidebarState', val);
-              document.documentElement.classList.toggle('sidebar-collapsed', !val);
+              document.documentElement.classList.toggle('sidebar-collapsed', !sidebarOpen);
           }
-      })">
+          
+          $watch('sidebarOpen', val => {
+              if (window.innerWidth >= 1024) {
+                  localStorage.setItem('sidebarState', val);
+                  document.documentElement.classList.toggle('sidebar-collapsed', !val);
+              }
+          })
+      ">
     
     <div class="flex h-full overflow-hidden">
         

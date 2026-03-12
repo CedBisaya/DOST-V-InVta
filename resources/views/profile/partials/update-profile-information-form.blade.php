@@ -79,20 +79,4 @@
         </h3>
     </div>
 </div>
-
-<script>
-    function closeModal() {
-        const modal = document.getElementById('success-modal');
-        if(modal) {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
-        }
-    }
-
-    setTimeout(() => {
-        closeModal();
-    }, 3000);
-</script>
 @endif

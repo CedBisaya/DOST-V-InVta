@@ -10,7 +10,7 @@
                 </svg>
             </button>
 
-            <div class="hidden sm:flex flex-col justify-center shrink-0" 
+            <div class="flex flex-col sm:flex-col justify-center shrink-0 w-full sm:w-64" 
                  x-data="{ 
                     day: '', 
                     dateStr: '',

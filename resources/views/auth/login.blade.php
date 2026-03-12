@@ -85,7 +85,7 @@
         </div>
         <div class="mt-4 text-center">
             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                Already have an account? Log in
+                Don't have an account? Sign Up
             </a>
         </div>
     </form>

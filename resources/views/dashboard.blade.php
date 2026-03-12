@@ -77,7 +77,7 @@
     </div>
 </div>
         
-        <div class="w-full border-t border-gray-50">
+    <div class="w-full border-t border-gray-50">
     <table class="w-full border-collapse table-fixed"> 
         <thead>
             <tr class="bg-dost-cyan text-white uppercase text-[12px] font-bold tracking-wider">
@@ -134,14 +134,27 @@
     </table>
 </div>
 
-        <div class="p-4 border-t border-gray-50 flex items-center justify-between bg-gray-50/30 flex-wrap gap-4">
-            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap">
-                Showing data <span class="text-gray-600">1 to {{ count($users ?? []) }}</span> of {{ count($users ?? []) }} results
+        {{-- Pagination Footer - Exact match to your provided snippet --}}
+       <div class="p-4 border-t border-gray-50 flex items-center justify-between bg-gray-50/30 flex-wrap gap-4">
+            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest text-center md:text-left">
+                Showing data <span class="text-gray-600">{{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}</span> of {{ $users->total() ?? 0 }} results
             </p>
             <div class="flex items-center space-x-1 shrink-0">
-                <button class="px-2 py-1 text-gray-400 hover:bg-white hover:shadow-sm rounded text-xs transition-all border border-transparent hover:border-gray-200">&lt;</button>
-                <button class="px-3 py-1 bg-dost-cyan text-white rounded text-xs font-bold shadow-sm">1</button>
-                <button class="px-2 py-1 text-gray-400 hover:bg-white hover:shadow-sm rounded text-xs transition-all border border-transparent hover:border-gray-200">&gt;</button>
+                @if (!$users->onFirstPage())
+                    <a href="{{ $users->previousPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&lt;</a>
+                @else
+                    <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&lt;</span>
+                @endif
+
+                <button class="px-4 py-1.5 bg-dost-cyan text-white shadow-md rounded-lg text-xs font-black">
+                    {{ $users->currentPage() }}
+                </button>
+
+                @if ($users->hasMorePages())
+                    <a href="{{ $users->nextPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&gt;</a>
+                @else
+                    <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&gt;</span>
+                @endif
             </div>
         </div>
     </div>
