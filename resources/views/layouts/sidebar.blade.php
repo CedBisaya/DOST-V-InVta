@@ -1,25 +1,3 @@
-@php
-    $navItems = [
-        ['name' => 'Dashboard', 'route' => 'dashboard', 'icon' => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
-        ['name' => 'Users', 'route' => 'users.index', 'icon' => 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'],
-        ['name' => 'Reports', 'route' => 'reports.index', 'icon' => 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'],
-        ['name' => 'Logs', 'route' => 'logs.index', 'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
-    ];
-@endphp
-
-{{-- Backdrop Overlay --}}
-<div x-show="sidebarOpen" 
-     x-transition:enter="transition opacity-300 ease-out"
-     x-transition:enter-start="opacity-0"
-     x-transition:enter-end="opacity-100"
-     x-transition:leave="transition opacity-200 ease-in"
-     x-transition:leave-start="opacity-100"
-     x-transition:leave-end="opacity-0"
-     @click="sidebarOpen = false" 
-     x-cloak
-     class="fixed inset-0 z-40 bg-black/50 lg:hidden">
-</div>
-
 <aside 
     x-cloak
     class="fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-100 flex flex-col transition-all duration-300 ease-in-out transform -translate-x-full lg:translate-x-0 lg:static shadow-xl lg:shadow-none"
@@ -28,55 +6,55 @@
         '-translate-x-full lg:translate-x-0 lg:w-16': !sidebarOpen
     }"
 >
+
     {{-- Logo Header --}}
     <div class="flex items-center justify-between h-16 px-4 shrink-0 overflow-hidden border-b border-gray-50">
         <div class="flex items-center min-w-0">
             <div class="shrink-0 transition-all duration-300" 
-                 :class="sidebarOpen ? 'opacity-100 w-auto' : 'lg:opacity-0 lg:w-0 overflow-hidden'">
+                :class="sidebarOpen ? 'opacity-100 w-auto' : 'lg:opacity-0 lg:w-0 overflow-hidden'">
                 <img src="{{ asset('images/dost-logo.png') }}" alt="Logo" class="h-14 w-auto object-contain">
             </div>
         </div>
             
         <button @click="sidebarOpen = !sidebarOpen" class="p-1.5 text-gray-400 hover:text-dost-cyan focus:outline-none shrink-0 transition-colors">
-            {{-- Desktop Toggle --}}
-            <div class="hidden lg:block">
-                <svg class="w-5 h-5 transition-transform duration-300" :class="sidebarOpen ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </div>
-            {{-- Mobile Close Button --}}
-            <div class="lg:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </div>
+            <svg class="w-5 h-5 transition-transform duration-300" :class="sidebarOpen ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
         </button>
     </div>
+
+    @php
+        $navItems = [
+            ['name' => 'Dashboard', 'route' => 'dashboard', 'icon' => 'heroicon-o-squares-2x2'],
+            ['name' => 'Users', 'route' => 'users.index', 'icon' => 'heroicon-o-users'],
+            ['name' => 'Reports', 'route' => 'reports.index', 'icon' => 'heroicon-o-document-chart-bar'],
+            ['name' => 'Logs', 'route' => 'logs.index', 'icon' => 'heroicon-o-clock'],
+        ];
+    @endphp
 
     {{-- Navigation Items --}}
     <nav class="flex-1 mt-3 space-y-0.5 overflow-y-auto custom-scrollbar overflow-x-hidden">
         @foreach($navItems as $item)
             @php 
-                $isActive = request()->routeIs($item['route']) || 
-                            ($item['name'] == 'Users' && str_contains(request()->route()->getName(), 'users.')); 
+                $isActive = request()->routeIs($item['route']);
             @endphp
             
-            <a href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}" 
-               {{-- FIX: Auto-close sa mobile, pero walang effect sa desktop choice --}}
-               @click="if(window.innerWidth < 1024) sidebarOpen = false"
-               class="group relative flex items-center px-3 py-2.5 transition-all duration-200 overflow-hidden
-                      {{ $isActive ? 'bg-dost-hover text-dost-cyan' : 'text-gray-500 hover:bg-dost-hover hover:text-dost-cyan' }}">
+            <a href="{{ route($item['route']) }}" 
+                @click="if(window.innerWidth < 1024) sidebarOpen = false"
+                class="group relative flex items-center px-3 py-2.5 transition-all duration-200 overflow-hidden
+                        {{ $isActive ? 'bg-dost-hover text-dost-cyan' : 'text-gray-500 hover:bg-dost-hover hover:text-dost-cyan' }}">
                 
                 <div class="flex items-center justify-center shrink-0 w-6">
-                    <svg class="w-5 h-5 transition-colors {{ $isActive ? 'text-dost-cyan' : 'text-gray-400 group-hover:text-dost-cyan' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}" />
-                    </svg>
+                    {{-- Render the Heroicon dynamically --}}
+                    <x-dynamic-component 
+                        :component="$item['icon']" 
+                        class="w-5 h-5 transition-colors {{ $isActive ? 'text-dost-cyan' : 'text-gray-400 group-hover:text-dost-cyan' }}" 
+                    />
                 </div>
                 
                 <span class="ml-4 text-[13px] font-medium tracking-wide whitespace-nowrap transition-all duration-300"
-                      x-show="sidebarOpen"
-                      :class="sidebarOpen ? 'opacity-100' : 'lg:hidden opacity-0 w-0 ml-0'">
+                        x-show="sidebarOpen"
+                        :class="sidebarOpen ? 'opacity-100' : 'lg:hidden opacity-0 w-0 ml-0'">
                     {{ $item['name'] }}
                 </span>
 
@@ -89,18 +67,11 @@
     <div class="shrink-0 border-t border-gray-100 overflow-hidden bg-white">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" 
-                class="group flex items-center px-3 py-4 w-full text-gray-500 hover:text-red-600 hover:bg-red-50 transition-all duration-200 focus:outline-none">
+            <button type="submit" class="group flex items-center px-3 py-4 w-full text-gray-500 hover:text-red-600 hover:bg-red-50 transition-all duration-200">
                 <div class="flex items-center justify-center shrink-0 w-6">
-                    <svg class="w-5 h-5 text-gray-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
+                    <x-heroicon-s-arrow-left-on-rectangle class="w-5 h-5 text-gray-400 group-hover:text-red-600 transition-colors" />
                 </div>
-                <span class="ml-4 text-[13px] font-bold whitespace-nowrap transition-all duration-300"
-                      x-show="sidebarOpen"
-                      :class="sidebarOpen ? 'opacity-100' : 'lg:hidden opacity-0 w-0 ml-0'">
-                    Sign Out
-                </span>
+                <span class="ml-4 text-[13px] font-bold whitespace-nowrap" x-show="sidebarOpen">Sign Out</span>
             </button>
         </form>
     </div>

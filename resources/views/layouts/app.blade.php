@@ -46,13 +46,13 @@
     </style>
 </head>
 <body class="bg-gray-100 h-screen antialiased overflow-hidden" 
-      x-data="{ sidebarOpen: window.initialSidebarState }" 
-      x-init="$watch('sidebarOpen', val => {
-          if (window.innerWidth >= 1024) {
-              localStorage.setItem('sidebarState', val);
-              document.documentElement.classList.toggle('sidebar-collapsed', !val);
-          }
-      })">
+        x-data="{ sidebarOpen: window.initialSidebarState }" 
+        x-init="$watch('sidebarOpen', val => {
+            if (window.innerWidth >= 1024) {
+                localStorage.setItem('sidebarState', val);
+                document.documentElement.classList.toggle('sidebar-collapsed', !val);
+            }
+        })">
     
     <div class="flex h-full overflow-hidden">
         
