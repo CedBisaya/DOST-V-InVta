@@ -59,25 +59,25 @@
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="p-6 border-b border-gray-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-    <div class="flex items-center space-x-3">
-        <h3 class="text-lg font-bold text-dost-blue">Users</h3>
-    </div>
-
-        <div class="relative w-full sm:w-64 lg:w-80 group">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg class="h-4 w-4 text-gray-400 group-focus-within:text-dost-cyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+            <div class="flex items-center space-x-3">
+                <h3 class="text-lg font-bold text-dost-blue">Users</h3>
             </div>
-            <input type="text" 
-                name="search"
-                placeholder="Search by name or email..." 
-                class="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg leading-5 bg-gray-50/50 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-dost-cyan focus:border-dost-cyan sm:text-sm transition-all shadow-sm"
-            >
+
+            <div class="relative w-full sm:w-64 lg:w-80 group">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-4 w-4 text-gray-400 group-focus-within:text-dost-cyan transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                        <input type="text" 
+                            name="search"
+                            placeholder="Search by name or email..." 
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg leading-5 bg-gray-50/50 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-dost-cyan focus:border-dost-cyan sm:text-sm transition-all shadow-sm"
+                        >
+            </div>
         </div>
-    </div>
         
-        <div class="w-full border-t border-gray-50">
+    <div class="w-full border-t border-gray-50">
     <table class="w-full border-collapse table-fixed"> 
         <thead>
             <tr class="bg-dost-cyan text-white uppercase text-[12px] font-bold tracking-wider">
@@ -134,15 +134,27 @@
     </table>
 </div>
 
+        {{-- Pagination Footer - Exact match to your provided snippet --}}
         <div class="p-4 border-t border-gray-50 flex items-center justify-between bg-gray-50/30 flex-wrap gap-4">
-            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap">
-                Showing data <span class="text-gray-600">1 to {{ count($users ?? []) }}</span> of {{ count($users ?? []) }} results
+            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest text-center md:text-left">
+                Showing data <span class="text-gray-600">{{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}</span> of {{ $users->total() ?? 0 }} results
             </p>
             <div class="flex items-center space-x-1 shrink-0">
-                <button class="px-2 py-1 text-gray-400 hover:bg-white hover:shadow-sm rounded text-xs transition-all border border-transparent hover:border-gray-200">&lt;</button>
-                <button class="px-3 py-1 bg-dost-cyan text-white rounded text-xs font-bold shadow-sm">1</button>
-                <button class="px-2 py-1 text-gray-400 hover:bg-white hover:shadow-sm rounded text-xs transition-all border border-transparent hover:border-gray-200">&gt;</button>
-                </div>
+                @if (!$users->onFirstPage())
+                    <a href="{{ $users->previousPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&lt;</a>
+                @else
+                    <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&lt;</span>
+                @endif
+
+                <button class="px-4 py-1.5 bg-dost-cyan text-white shadow-md rounded-lg text-xs font-black">
+                    {{ $users->currentPage() }}
+                </button>
+
+                @if ($users->hasMorePages())
+                    <a href="{{ $users->nextPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&gt;</a>
+                @else
+                    <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&gt;</span>
+                @endif
             </div>
         </div>
     </div>

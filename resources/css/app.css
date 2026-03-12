@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --dost-blue: #003366;
+        --dost-cyan: #0099cc;
+        --dost-hover: #f8fafc;
+        --dost-danger: #FF3333;
+    }
+
+   body {
+    @apply bg-gray-50 text-gray-950;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+}
+
+@layer components {
+    /* Main Branding Header */
+    .dost-header-bar {
+        background-image: url('/images/dost_bar.png') !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 3.5rem;
+        width: 100%;
+    }
+
+    /* Custom Input Styles */
+    input[type="text"], input[type="email"], select {
+        @apply border-gray-200 focus:border-cyan-400 focus:ring-cyan-400 transition-all duration-200;
+    }
+
+    /* Brand Utility Mappings */
+    .text-dost-blue { color: var(--dost-blue); }
+    .bg-dost-cyan { background-color: var(--dost-cyan); }
+    .bg-dost-blue { background-color: var(--dost-blue); }
+    .hover\:bg-dost-blue:hover { background-color: var(--dost-blue); }
+    
+    /* Table Rounded Fixes */
+    .rounded-l-xl { border-top-left-radius: 0.75rem; border-bottom-left-radius: 0.75rem; }
+    .rounded-r-xl { border-top-right-radius: 0.75rem; border-bottom-right-radius: 0.75rem; }
+}
+
+@layer utilities {
+    /* Smooth scaling effect for buttons */
+    .active\:scale-95:active {
+        transform: scale(0.95);
+    }
+    .active\:scale-90:active {
+        transform: scale(0.90);
+    }
+
+    /* Modal Animation */
+    #success-modal.hidden {
+        display: none;
+        opacity: 0;
+    }
+    
+    #success-modal {
+        transition: opacity 0.3s ease-out;
+    }
+}
+
+/* Custom Scrollbar for the table container */
+.overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+}
+.overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+.overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}
+
+/* Sidebar utility classes */
+[x-cloak] { display: none !important; }
+
+@media (max-width: 1023px) {
+    aside { transform: translateX(-100%) !important; }
+    aside.translate-x-0 { transform: translateX(0) !important; }
+}
+
+@media (min-width: 1024px) {
+    .sidebar-collapsed aside { width: 4rem !important; }
+    .sidebar-collapsed aside span { display: none !important; }
+    .sidebar-collapsed aside .shrink-0 img { opacity: 0; width: 0; }
+}

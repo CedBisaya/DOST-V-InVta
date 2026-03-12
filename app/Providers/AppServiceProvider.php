@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Livewire\Volt\Volt; // Import mo ito
+use Livewire\Volt\Volt;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,10 +18,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-public function boot(): void
-{
-    \Livewire\Volt\Volt::mount([
-        resource_path('views/livewire'),
-    ]);
-}
+    public function boot(): void
+    {
+        Volt::mount([
+            resource_path('views/livewire'),
+        ]);
+    }
 }

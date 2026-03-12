@@ -1,3 +1,16 @@
+{{-- Backdrop Overlay --}}
+<div x-show="sidebarOpen" 
+     x-transition:enter="transition opacity-300 ease-out"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition opacity-200 ease-in"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0"
+     @click="sidebarOpen = false" 
+     x-cloak
+     class="fixed inset-0 z-40 bg-black/50 lg:hidden">
+</div>
+
 <aside 
     x-cloak
     class="fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-100 flex flex-col transition-all duration-300 ease-in-out transform -translate-x-full lg:translate-x-0 lg:static shadow-xl lg:shadow-none"
@@ -16,14 +29,28 @@
             </div>
         </div>
             
-        <button @click="sidebarOpen = !sidebarOpen" class="p-1.5 text-gray-400 hover:text-dost-cyan focus:outline-none shrink-0 transition-colors">
-            <svg class="w-5 h-5 transition-transform duration-300" :class="sidebarOpen ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+        {{-- FIXED: sidebarOpen = !sidebarOpen LANG dapat dito. Ang app.blade.php na ang bahala mag-save --}}
+        <button @click="sidebarOpen = !sidebarOpen" 
+                class="p-1.5 text-gray-400 hover:text-dost-cyan focus:outline-none shrink-0 transition-colors">
+            
+            {{-- Desktop Toggle Icon --}}
+            <div class="hidden lg:block">
+                 <svg class="w-5 h-5 transition-transform duration-300" :class="sidebarOpen ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+
+            {{-- Mobile Close Button --}}
+            <div class="lg:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
         </button>
     </div>
 
-    @php
+     @php
         $navItems = [
             ['name' => 'Dashboard', 'route' => 'dashboard', 'icon' => 'heroicon-o-squares-2x2'],
             ['name' => 'Users', 'route' => 'users.index', 'icon' => 'heroicon-o-users'],
@@ -45,7 +72,6 @@
                         {{ $isActive ? 'bg-dost-hover text-dost-cyan' : 'text-gray-500 hover:bg-dost-hover hover:text-dost-cyan' }}">
                 
                 <div class="flex items-center justify-center shrink-0 w-6">
-                    {{-- Render the Heroicon dynamically --}}
                     <x-dynamic-component 
                         :component="$item['icon']" 
                         class="w-5 h-5 transition-colors {{ $isActive ? 'text-dost-cyan' : 'text-gray-400 group-hover:text-dost-cyan' }}" 
@@ -54,7 +80,9 @@
                 
                 <span class="ml-4 text-[13px] font-medium tracking-wide whitespace-nowrap transition-all duration-300"
                         x-show="sidebarOpen"
-                        :class="sidebarOpen ? 'opacity-100' : 'lg:hidden opacity-0 w-0 ml-0'">
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform -translate-x-2"
+                        x-transition:enter-end="opacity-100 transform translate-x-0">
                     {{ $item['name'] }}
                 </span>
 
@@ -63,7 +91,6 @@
         @endforeach
     </nav>
 
-    {{-- Logout Section --}}
     <div class="shrink-0 border-t border-gray-100 overflow-hidden bg-white">
         <form method="POST" action="{{ route('logout') }}">
             @csrf

@@ -48,7 +48,6 @@ public function store(Request $request)
 
 public function deactivate(User $user)
 {
-    // Palitan ang status sa inactive
     $user->update(['status' => 'inactive']);
 
     return redirect()->route('users.index')->with('success', 'Account has been deactivated.');

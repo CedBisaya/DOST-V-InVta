@@ -9,9 +9,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
-        $managers = User::latest()->paginate(5);
-
+      
+        $users = User::where('id', '<', 0)->paginate(5);
 
         $totalManagers = 0;
         $totalEvents = 0; 
@@ -19,7 +18,7 @@ class DashboardController extends Controller
         $ongoingEvents = 0;
 
         return view('dashboard', compact(
-            'managers', 
+            'users', 
             'totalManagers', 
             'totalEvents', 
             'upcomingEvents', 

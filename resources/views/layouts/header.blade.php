@@ -11,7 +11,7 @@
             </button>
 
             <div class="flex flex-col sm:flex-col justify-center shrink-0 w-full sm:w-64" 
-                x-data="{ 
+                    x-data="{ 
                     day: '', 
                     dateStr: '',
                     updateClock() {
