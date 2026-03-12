@@ -5,9 +5,7 @@
             <button @click="sidebarOpen = !sidebarOpen" 
                     class="lg:hidden p-2 rounded-lg hover:bg-white/10 focus:ring-2 focus:ring-white/20 transition-colors shrink-0"
                     aria-label="Toggle Sidebar">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <x-heroicon-o-bars-3 class="w-8 h-8 text-gray-500 group-hover:text-red-600 transition-colors" />
             </button>
 
             <div class="flex flex-col sm:flex-col justify-center shrink-0 w-full sm:w-64" 
@@ -38,9 +36,7 @@
             
             <div class="relative group">
                 <button class="p-1.5 rounded-full transition-all focus:outline-none cursor-default">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
+                    <x-heroicon-o-bell class="w-8 h-8 group-hover:text-blue-600 transition-colors" />
                     
                     <span class="absolute top-1 right-1 flex h-4 w-4">
                         <span class="relative inline-flex rounded-full h-4 w-4 bg-red-600 text-[10px] font-bold items-center justify-center border border-dost-blue">
@@ -54,9 +50,7 @@
                 <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none group">
                     <div class="w-9 h-9 bg-white p-0.5 rounded-full shadow-inner flex items-center justify-center shrink-0 group-hover:ring-2 group-hover:ring-white/30 transition-all">
                         <div class="w-full h-full bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
-                            <svg class="w-6 h-6 text-dost-blue" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                            </svg>
+                            <x-heroicon-o-user-circle class="w-8 h-8  text-blue-500 group-hover:text-blue-600 transition-colors" />
                         </div>
                     </div>
 

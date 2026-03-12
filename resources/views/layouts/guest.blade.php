@@ -14,7 +14,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-poppins text-gray-900 antialiased bg-gray-100 h-screen overflow-hidden">
+<body class="font-poppins text-gray-900 antialiased bg-gray-100 h-screen overflow-hidden justify-between">
         <header class="w-full flex items-center gap-4 p-4 md:p-8">
         <img src="{{ asset('asset/DOST_LOGO.png') }}" 
             alt="Logo" 
@@ -23,7 +23,7 @@
         <div class="flex flex-col justify-center leading-none">
             <h1 class="font-poppins font-black text-[26px] text-slate-900 uppercase">DOST</h1>
             <p class="font-poppins font-semibold text-[16px] text-slate-800 uppercase">BICOL</p>
-            <p class="font-poppins font-black text-[12px] md:text-[20px] text-slate-700 hidden sm:block">
+            <p class="font-poppins font-black text-[12px] md:text-[20px] text-slate-700">
                 OneDOST4U: Solutions and Opportunities
             </p>
         </div>

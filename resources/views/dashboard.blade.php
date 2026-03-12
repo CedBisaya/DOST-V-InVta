@@ -10,10 +10,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4 min-w-0 hover:shadow-md transition-shadow">
             <div class="p-3 bg-orange-100 rounded-lg shrink-0">
-                <svg class="w-8 h-8 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                </svg>
+                <x-heroicon-o-users class="w-8 h-8 text-orange-400 group-hover:text-red-600 transition-colors" />
             </div>
+
             <div class="min-w-0 flex-1">
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Total Users</p>
                 <p class="text-2xl lg:text-3xl font-bold text-gray-800 truncate">{{ $totalManagers ?? 0 }}</p>
@@ -22,9 +21,7 @@
 
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4 min-w-0 hover:shadow-md transition-shadow">
             <div class="p-3 bg-indigo-100 rounded-lg shrink-0">
-                <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+                <x-heroicon-o-calendar class="w-8 h-8 text-purple-500 group-hover:text-red-600 transition-colors" />
             </div>
             <div class="min-w-0 flex-1">
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Total Events</p>
@@ -34,9 +31,7 @@
 
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4 min-w-0 hover:shadow-md transition-shadow">
             <div class="p-3 bg-blue-100 rounded-lg shrink-0">
-                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <x-heroicon-o-clock class="w-8 h-8 text-blue-500 group-hover:text-red-600 transition-colors" />
             </div>
             <div class="min-w-0 flex-1">
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Upcoming</p>
@@ -46,9 +41,7 @@
 
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4 min-w-0 hover:shadow-md transition-shadow">
             <div class="p-3 bg-green-100 rounded-lg shrink-0">
-                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <x-heroicon-o-check-circle class="w-8 h-8 text-green-500 group-hover:text-red-600 transition-colors" />
             </div>
             <div class="min-w-0 flex-1">
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider truncate">Ongoing</p>
