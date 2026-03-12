@@ -31,7 +31,7 @@
         </div>
 
         <div class="flex-1 flex items-center justify-center py-4">
-            <div class="z-10 w-full max-w-lg bg-white shadow-2xl relative overflow-hidden flex flex-col rounded-lg">
+            <div class="z-10 w-full max-w-lg bg-white shadow-2xl relative overflow-hidden flex flex-col rounded-[20px]">
                 
                 <div class="w-full h-14 sm:h-13 shrink-0" style="background-image: url('{{ asset('images/dost_bar.png') }}'); background-size: cover; background-position: center;"></div>
 
