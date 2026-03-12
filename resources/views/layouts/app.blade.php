@@ -14,21 +14,17 @@
 
 <body class="bg-gray-100 h-screen antialiased overflow-hidden" 
       x-data="{ 
-          {{-- Kunin ang state sa localStorage, default ay true (open) kung wala pa --}}
           sidebarOpen: window.innerWidth < 1024 ? false : (localStorage.getItem('sidebarState') === null ? true : localStorage.getItem('sidebarState') === 'true')
       }" 
       x-init="
-          {{-- I-sync ang initial state sa class ng document --}}
           if (window.innerWidth >= 1024) {
               document.documentElement.classList.toggle('sidebar-collapsed', !sidebarOpen);
           }
           
-          {{-- Bantayan ang pagbabago ng sidebarOpen --}}
+
           $watch('sidebarOpen', val => {
-              {{-- Laging i-save ang state sa localStorage para tanda ng browser --}}
               localStorage.setItem('sidebarState', val);
 
-              {{-- I-apply lang ang collapsed class kung desktop --}}
               if (window.innerWidth >= 1024) {
                   document.documentElement.classList.toggle('sidebar-collapsed', !val);
               }
