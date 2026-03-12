@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="flex items-center space-x-3 lg:space-x-5">
+        <div class="flex items-center lg:space-x-2">
             
             <div class="relative group">
                 <button class="p-1.5 rounded-full transition-all focus:outline-none cursor-default">
@@ -44,15 +44,15 @@
                     
                     <span class="absolute top-1 right-1 flex h-4 w-4">
                         <span class="relative inline-flex rounded-full h-4 w-4 bg-red-600 text-[10px] font-bold items-center justify-center border border-dost-blue">
-                            1
+                            3
                         </span>
                     </span>
                 </button>
             </div>
 
             <div class="relative" x-data="{ open: false }" @click.away="open = false">
-                <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none group">
-                    <div class="w-9 h-9 bg-white p-0.5 rounded-full shadow-inner flex items-center justify-center shrink-0 group-hover:ring-2 group-hover:ring-white/30 transition-all">
+                <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none group">
+                    <div class="w-7 h-7 bg-white p-0.5 rounded-full shadow-inner flex items-center justify-center shrink-0 group-hover:ring-2 group-hover:ring-white/30 transition-all">
                         <div class="w-full h-full bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
                             <svg class="w-6 h-6 text-dost-blue" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -61,10 +61,10 @@
                     </div>
 
                     <div class="text-left hidden md:block">
-                        <div class="text-sm lg:text-base font-bold leading-none truncate max-w-[150px]" title="{{ auth()->user()->name }}">
+                        <div class="text-sm  font-bold leading-none truncate max-w-[150px]" title="{{ auth()->user()->name }}">
                             {{ auth()->user()->name }}
                         </div>
-                        <div class="text-[10px] font-medium opacity-90 mt-1 uppercase tracking-tighter text-blue-100">
+                        <div class="text-[10px] font-medium">
                             MIS Unit
                         </div>
                     </div>
