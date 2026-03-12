@@ -66,19 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Date Filter Logic
 const dateInput = document.getElementById('dateInput');
 const dateDisplay = document.getElementById('dateDisplay');
+
 if (dateInput && dateDisplay) {
     const dateWrapper = dateInput.parentElement;
-    const clearBtn = document.createElement('button');
-    clearBtn.innerHTML = `
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>`;
-    clearBtn.className = "hidden ml-2 text-gray-400 hover:text-red-500 transition-colors z-20";
-    clearBtn.type = "button";
-    dateWrapper.appendChild(clearBtn);
 
-    dateWrapper.addEventListener('click', function(e) {
-        if (e.target.closest('button') === clearBtn) return;
+    // Trigger date picker pag kinlik ang wrapper
+    dateWrapper.addEventListener('click', function() {
         if ('showPicker' in HTMLInputElement.prototype) {
             dateInput.showPicker();
         } else {
@@ -86,6 +79,7 @@ if (dateInput && dateDisplay) {
         }
     });
 
+    // Update display kapag may piniling petsa
     dateInput.addEventListener('change', function() {
         const dateValue = this.value; 
         if (dateValue) {
@@ -93,23 +87,17 @@ if (dateInput && dateDisplay) {
             const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
             const dd = String(dateObj.getDate()).padStart(2, '0');
             const yyyy = dateObj.getFullYear();
+            
             dateDisplay.innerText = `${mm}/${dd}/${yyyy}`;
             dateDisplay.classList.add('text-dost-cyan');
-            clearBtn.classList.remove('hidden');
         } else {
             resetDateFilter();
         }
-    });
-
-    clearBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); 
-        resetDateFilter();
     });
 
     function resetDateFilter() {
         dateInput.value = ''; 
         dateDisplay.innerText = 'mm/dd/yyyy'; 
         dateDisplay.classList.remove('text-dost-cyan');
-        clearBtn.classList.add('hidden');
     }
 }

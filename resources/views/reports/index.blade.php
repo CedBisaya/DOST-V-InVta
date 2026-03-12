@@ -45,7 +45,6 @@
                 </div>
             </div>
 
-            {{-- Table Section: Sadsad sa dulo --}}
             <div class="overflow-x-auto">
                 <table class="w-full text-left min-w-[800px]">
                     <thead>
