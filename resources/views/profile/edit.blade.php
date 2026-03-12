@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-6xl mx-auto pb-10 px-4 pt-0 -mt-2">
+<div class="space-y-4 min-w-0 w-full pt-1 overflow-x-hidden">
     
     <div class="flex items-center mb-4">
         <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-bold text-gray-400 hover:text-cyan-500 transition-colors">
@@ -10,12 +10,12 @@
             </svg>
             Return
         </a>
-    </div>
+    </div> 
 
     <div class="space-y-5">
         {{-- Profile Card --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="p-8">
+            <div class="p-7">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight">My Profile</h2>
                     <p class="text-cyan-500 font-medium text-sm mb-8"">Manage and protect your Account</p>

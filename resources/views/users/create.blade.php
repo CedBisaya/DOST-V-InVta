@@ -5,7 +5,7 @@
 <div class="w-full pb-10">
     
  {{-- Return Button Container: Pantay sa padding ng header (px-4 lg:px-8) --}}
-    <div class="max-w-6xl mx-auto px-4 lg:px-8 mb-4">
+    <div class="space-y-10 min-w-0 w-full pt-4 overflow-x-hidden">
         <div class="flex items-center">
             <a href="{{ route('users.index') }}" class="flex items-center text-gray-400 hover:text-cyan-500 transition-colors font-bold text-xs uppercase tracking-widest">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -17,7 +17,7 @@
     </div>
 
     {{-- Main Card --}}
-    <div class="max-w-6xl mx-auto px-4 lg:px-8">
+    <div class="space-y-10 min-w-0 w-full pt-4 overflow-x-hidden">
         <div class="bg-white rounded-[1rem] shadow-sm border border-gray-100 p-8">
             <h2 class="text-2xl font-black text-gray-800 tracking-tight mb-2">Create Account</h2>
             <p class="text-cyan-500 font-medium text-sm mb-8">Fill out the form below to add new accounts.</p>
