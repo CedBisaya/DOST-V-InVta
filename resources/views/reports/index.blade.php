@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-6xl mx-auto pb-10 px-4">
-    {{-- Main Card Wrapper: Walang overflow padding para makasagad ang elements --}}
+<div class="space-y-6 min-w-0 w-full pt-4 overflow-x-hidden">
+    {{-- Main Card Wrapper --}}
     <div class="bg-white rounded-[1rem] md:rounded-[1.5rem] shadow-sm border border-gray-100 overflow-hidden">
         
         <div class="py-8 md:py-10">
             
-            {{-- Header Section: Full width with horizontal padding --}}
+            {{-- Header Section --}}
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 w-full px-6 md:px-8 lg:px-10">
                 <div>
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight">Reports</h2>
@@ -45,26 +45,28 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left min-w-[800px]">
+            {{-- Table Section --}}
+            <div class="overflow-x-auto w-full">
+                {{-- min-w-max ensures header background doesn't cut off --}}
+                <table class="w-full text-center min-w-max border-collapse">
                     <thead>
-                        <tr class="text-white bg-dost-cyan">
-                            {{-- Uppercase and tracked headers --}}
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Event Name</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Date</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Event Manager</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest text-center">Venue</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest text-center">Action</th>
+                        <tr class="text-white bg-dost-cyan uppercase text-[11px] font-black tracking-[0.15em]">
+                            {{-- Header Dividers to match screenshot style --}}
+                            <th class="px-8 py-4 last:border-r-0">Event Name</th>
+                            <th class="px-8 py-4 last:border-r-0">Date</th>
+                            <th class="px-8 py-4 last:border-r-0">Event Manager</th>
+                            <th class="px-8 py-4 last:border-r-0">Venue</th>
+                            <th class="px-8 py-4">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-50">
+                    <tbody class="divide-y divide-gray-50 text-center">
                         @forelse($users as $user)
                             <tr class="hover:bg-gray-50/50 transition-colors">
-                                <td class="px-8 py-5 text-sm font-bold text-gray-700">{{ $user->event_name ?? 'Annual Science Forum' }}</td>
+                                <td class="px-8 py-5 text-sm font-bold text-gray-700 text-left">{{ $user->event_name ?? 'Annual Science Forum' }}</td>
                                 <td class="px-8 py-5 text-sm text-gray-500 font-medium">Oct 24, 2025</td>
                                 <td class="px-8 py-5 text-sm text-gray-600 font-bold italic">{{ $user->name }}</td>
-                                <td class="px-8 py-5 text-center text-sm text-gray-500">PICC, Manila</td>
-                                <td class="px-8 py-5 text-center">
+                                <td class="px-8 py-5 text-sm text-gray-500">PICC, Manila</td>
+                                <td class="px-8 py-5">
                                     <div class="flex items-center justify-center space-x-2">
                                         <button title="Download PDF" class="p-2 text-red-400 hover:bg-red-50 rounded-lg transition-all active:scale-90">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,24 +106,35 @@
             {{-- Pagination Footer --}}
             <div class="mt-8 mx-6 md:mx-8 lg:mx-10 p-4 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between bg-gray-50/30 rounded-2xl gap-4">
                 <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest text-center md:text-left">
-                    Showing data <span class="text-gray-600">{{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}</span> of {{ $users->total() ?? 0 }} results
+                    Showing data <span class="text-gray-700">{{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}</span> of {{ $users->total() ?? 0 }} results
                 </p>
                 
-                <div class="flex items-center space-x-1 shrink-0">
+                <div class="flex items-center space-x-4 shrink-0">
+                    {{-- Previous --}}
                     @if ($users->onFirstPage())
-                        <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&lt;</span>
+                        <span class="text-gray-300 cursor-not-allowed">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </span>
                     @else
-                        <a href="{{ $users->previousPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&lt;</a>
+                        <a href="{{ $users->previousPageUrl() }}" class="text-gray-400 hover:text-dost-cyan">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </a>
                     @endif
 
-                    <button class="px-4 py-1.5 bg-dost-cyan text-white shadow-md rounded-lg text-xs font-black">
+                    {{-- Current Page Indicator (Square Cyan) --}}
+                    <button class="w-10 h-10 bg-dost-cyan text-white shadow-md rounded-lg text-xs font-black flex items-center justify-center">
                         {{ $users->currentPage() }}
                     </button>
 
+                    {{-- Next --}}
                     @if ($users->hasMorePages())
-                        <a href="{{ $users->nextPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&gt;</a>
+                        <a href="{{ $users->nextPageUrl() }}" class="text-gray-400 hover:text-dost-cyan">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
                     @else
-                        <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&gt;</span>
+                        <span class="text-gray-300 cursor-not-allowed">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
                     @endif
                 </div>
             </div>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-6xl mx-auto pb-10 px-4">
-    {{-- Main Card Wrapper: --}}
+<div class="space-y-10 min-w-0 w-full pt-4 overflow-x-hidden"> {{-- min-w-0 w-full --}} 
+    {{-- Main Card Wrapper --}}
     <div class="bg-white rounded-[1rem] md:rounded-[1.5rem] shadow-sm border border-gray-100 overflow-hidden">
         
-        <div class="py-8 md:py-10">
+        <div class="py-10 md:py-10">
             
-            {{-- Header Section: Full width, justified, with internal horizontal padding --}}
+            {{-- Header Section --}}
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 w-full px-6 md:px-8 lg:px-10">
                 <div>
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight">Users</h2>
@@ -21,7 +21,7 @@
                         + Create Account
                     </a>
 
-                    {{-- Search Bar: --}}
+                    {{-- Search Bar --}}
                     <div class="relative flex-grow sm:min-w-[300px]">
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,17 +45,17 @@
                 </div>
             </div>
 
-            {{-- Table Section--}}
-            <div class="overflow-x-auto">
-                <table class="w-full text-left min-w-[800px]">
+            {{-- Table Section --}}
+            <div class="overflow-x-auto w-full">
+                <table class="w-full min-w-max text-center border-collapse">
                     <thead>
-                        <tr class="text-white bg-dost-cyan">
-                            {{-- Uppercase headers gaya ng nasa image --}}
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Name</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Role</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Status</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Email</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest text-center">Action</th>
+                        <tr class="text-white bg-dost-cyan uppercase text-[11px] font-black tracking-[0.15em]">
+                            {{-- Header cells with white border dividers like in image_7dd7a2.png --}}
+                            <th class="px-6 py-4 last:border-r-0">Name</th>
+                            <th class="px-6 py-4 last:border-r-0">Role</th>
+                            <th class="px-6 py-4 last:border-r-0">Status</th>
+                            <th class="px-6 py-4 last:border-r-0">Email</th>
+                            <th class="px-6 py-4">Action</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-50">

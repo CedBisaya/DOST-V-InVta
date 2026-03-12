@@ -2,25 +2,29 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
-Alpine.start();
 
-// Sidebar state handler
-(function() {
+/**
+ * Sidebar State Handler
+ * Inilabas natin ang logic para madaling matawag ng Alpine x-data
+ */
+window.getInitialSidebarState = () => {
     const isMobile = window.innerWidth < 1024;
     const savedState = localStorage.getItem('sidebarState');
     
-    let initialState;
-    if (isMobile) {
-        initialState = false;
-    } else {
-        initialState = savedState === null ? true : savedState === 'true';
-    }
-    
-    if (!initialState && !isMobile) {
+    if (isMobile) return false;
+    // Default is true (open) if no saved state exists
+    return savedState === null ? true : savedState === 'true';
+};
+
+// Initial setup to prevent flicker
+(function() {
+    const initialState = window.getInitialSidebarState();
+    if (!initialState && window.innerWidth >= 1024) {
         document.documentElement.classList.add('sidebar-collapsed');
     }
-    window.initialSidebarState = initialState;
 })();
+
+Alpine.start();
 
 // Password Toggle Function
 window.togglePassword = (inputId, button) => {
@@ -64,40 +68,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Date Filter Logic
-const dateInput = document.getElementById('dateInput');
-const dateDisplay = document.getElementById('dateDisplay');
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('dateInput');
+    const dateDisplay = document.getElementById('dateDisplay');
 
-if (dateInput && dateDisplay) {
-    const dateWrapper = dateInput.parentElement;
+    if (dateInput && dateDisplay) {
+        const dateWrapper = dateInput.parentElement;
 
-    // Trigger date picker pag kinlik ang wrapper
-    dateWrapper.addEventListener('click', function() {
-        if ('showPicker' in HTMLInputElement.prototype) {
-            dateInput.showPicker();
-        } else {
-            dateInput.focus();
+        dateWrapper.addEventListener('click', function(e) {
+            // Iwasan ang double trigger kung ang mismong input ang na-click
+            if (e.target !== dateInput) {
+                if ('showPicker' in HTMLInputElement.prototype) {
+                    dateInput.showPicker();
+                } else {
+                    dateInput.focus();
+                }
+            }
+        });
+
+        dateInput.addEventListener('change', function() {
+            const dateValue = this.value; 
+            if (dateValue) {
+                const dateObj = new Date(dateValue);
+                const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const dd = String(dateObj.getDate()).padStart(2, '0');
+                const yyyy = dateObj.getFullYear();
+                
+                dateDisplay.innerText = `${mm}/${dd}/${yyyy}`;
+                dateDisplay.classList.add('text-dost-cyan');
+            } else {
+                resetDateFilter();
+            }
+        });
+
+        function resetDateFilter() {
+            dateInput.value = ''; 
+            dateDisplay.innerText = 'mm/dd/yyyy'; 
+            dateDisplay.classList.remove('text-dost-cyan');
         }
-    });
-
-    // Update display kapag may piniling petsa
-    dateInput.addEventListener('change', function() {
-        const dateValue = this.value; 
-        if (dateValue) {
-            const dateObj = new Date(dateValue);
-            const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const dd = String(dateObj.getDate()).padStart(2, '0');
-            const yyyy = dateObj.getFullYear();
-            
-            dateDisplay.innerText = `${mm}/${dd}/${yyyy}`;
-            dateDisplay.classList.add('text-dost-cyan');
-        } else {
-            resetDateFilter();
-        }
-    });
-
-    function resetDateFilter() {
-        dateInput.value = ''; 
-        dateDisplay.innerText = 'mm/dd/yyyy'; 
-        dateDisplay.classList.remove('text-dost-cyan');
     }
-}
+});

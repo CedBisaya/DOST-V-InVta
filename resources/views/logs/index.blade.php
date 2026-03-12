@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-6xl mx-auto pb-10 px-4">
-    {{-- Main Card Wrapper: Tinanggal ang p-10 padding para makasagad ang elements --}}
+<div class="space-y-6 min-w-0 w-full pt-4 overflow-x-hidden">
+    {{-- Main Card Wrapper --}}
     <div class="bg-white rounded-[1rem] md:rounded-[1.5rem] shadow-sm border border-gray-100 overflow-hidden">
         
         <div class="py-8 md:py-10">
             
-            {{-- Header Section: Full width with horizontal padding --}}
+            {{-- Header Section --}}
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 w-full px-6 md:px-8 lg:px-10">
                 <div>
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight">User Activity Logs</h2>
@@ -26,10 +26,10 @@
                                class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-cyan-500 outline-none">
                     </div>
 
-                    {{-- Filter by Date --}}
+                    {{-- Date Filter --}}
                     <div class="flex items-center text-[12px] whitespace-nowrap self-end sm:self-auto">
                         <span class="text-gray-400">Filter by :</span>
-                        <div class="flex items-center ml-2 relative group cursor-pointer bg-gray-50 px-4 py-2.5 rounded-xl hover:bg-gray-100 transition-all border border-transparent focus-within:ring-2 focus-within:ring-cyan-500">
+                        <div class="flex items-center ml-2 relative group cursor-pointer bg-gray-50 px-4 py-2.5 rounded-xl hover:bg-gray-100 transition-all border border-transparent">
                             <span id="dateDisplay" class="font-bold text-gray-700 group-hover:text-dost-cyan transition-colors mr-2">
                                 mm/dd/yyyy
                             </span>
@@ -38,23 +38,24 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
 
-                            <input type="date" id="dateInput" class="absolute inset-0 opacity-0 cursor-pointer w-full" 
+                            <input type="date" id="dateInput" class="absolute inset-0 opacity-0 cursor-pointer w-full"
                                    onchange="document.getElementById('dateDisplay').innerText = this.value || 'mm/dd/yyyy'">
                         </div>
                     </div>
                 </div>
             </div>
 
-            {{-- Table Section: Sagad sa dulo gamit ang w-full --}}
-            <div class="overflow-x-auto">
-                <table class="w-full text-left min-w-[800px]">
+            {{-- Table Section --}}
+            <div class="overflow-x-auto w-full">
+                <table class="w-full text-center min-w-max border-collapse">
                     <thead>
-                        <tr class="text-white bg-dost-cyan">
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">ID</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Name</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest">Role</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest text-center">Action</th>
-                            <th class="px-8 py-4 font-bold text-xs uppercase tracking-widest text-center">Date</th>
+                        {{-- Inalis ang border-r para wala nang white lines sa pagitan ng headers --}}
+                        <tr class="text-white bg-dost-cyan uppercase text-[11px] font-black tracking-[0.15em]">
+                            <th class="px-8 py-4">ID</th>
+                            <th class="px-8 py-4">Name</th>
+                            <th class="px-8 py-4">Role</th>
+                            <th class="px-8 py-4">Action</th>
+                            <th class="px-8 py-4">Date</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-50">
@@ -62,21 +63,21 @@
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-8 py-5 text-sm font-bold text-gray-400">#{{ $loop->iteration }}</td>
                                 <td class="px-8 py-5 text-sm font-bold text-gray-700">{{ $user->name }}</td>
-                                <td class="px-8 py-5 text-sm text-gray-500 font-medium">
-                                    <span class="capitalize">{{ $user->role ?? 'Internal' }}</span>
+                                <td class="px-8 py-5 text-sm text-gray-500 font-medium capitalize">
+                                    {{ $user->role ?? 'Internal' }}
                                 </td>
-                                <td class="px-8 py-5 text-center">
+                                <td class="px-8 py-5">
                                     <span class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase bg-blue-50 text-blue-600 tracking-wider">
                                         Login
                                     </span>
                                 </td>
-                                <td class="px-8 py-5 text-center text-sm text-gray-500 font-medium">
+                                <td class="px-8 py-5 text-sm text-gray-500 font-medium">
                                     {{ now()->format('M d, Y • h:i A') }}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-8 py-20 text-center">
+                                <td colspan="5" class="px-8 py-20">
                                     <div class="flex flex-col items-center justify-center space-y-4">
                                         <div class="p-4 bg-gray-50 rounded-full text-gray-200">
                                             <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,24 +99,23 @@
             {{-- Table Pagination Footer --}}
             <div class="mt-8 mx-6 md:mx-8 lg:mx-10 p-4 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between bg-gray-50/30 rounded-2xl gap-4">
                 <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest text-center md:text-left">
-                    Showing data 
-                    <span class="text-gray-600">
-                        {{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}
-                    </span> 
-                    of {{ $users->total() ?? 0 }} results
+                    Showing data <span class="text-gray-700">{{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }}</span> of {{ $users->total() ?? 0 }} results
                 </p>
                 
                 <div class="flex items-center space-x-1 shrink-0">
+                    {{-- Previous Button --}}
                     @if ($users->onFirstPage())
                         <span class="px-3 py-1.5 text-gray-300 rounded-lg text-xs cursor-not-allowed">&lt;</span>
                     @else
                         <a href="{{ $users->previousPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&lt;</a>
                     @endif
 
+                    {{-- Current Page (Cyan Square) --}}
                     <button class="px-4 py-1.5 bg-dost-cyan text-white shadow-md rounded-lg text-xs font-black">
                         {{ $users->currentPage() }}
                     </button>
 
+                    {{-- Next Button --}}
                     @if ($users->hasMorePages())
                         <a href="{{ $users->nextPageUrl() }}" class="px-3 py-1.5 text-gray-500 hover:bg-white hover:shadow-sm rounded-lg text-xs transition-all border border-transparent">&gt;</a>
                     @else
