@@ -6,7 +6,7 @@
         <div class="md:col-span-1">
             <label class="block text-xs font-bold text-gray-500 mb-1">First Name <span class="text-red-500">*</span></label>
             <input type="text" name="name" value="{{ old('name', $user->name) }}" required
-                   class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
+                class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
             @if($errors->has('name'))
                 <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $errors->first('name') }}</p>
             @endif
@@ -15,13 +15,13 @@
         <div class="md:col-span-1">
             <label class="block text-xs font-bold text-gray-500 mb-1">Middle Name</label>
             <input type="text" name="middle_name" value="{{ old('middle_name', $user->middle_name ?? '') }}"
-                   class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
+                class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
         </div>
 
         <div class="md:col-span-1">
             <label class="block text-xs font-bold text-gray-500 mb-1">Last Name</label>
             <input type="text" name="last_name" value="{{ old('last_name', $user->last_name ?? '') }}"
-                   class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
+                class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
         </div>
 
         <div class="md:col-span-1">
@@ -42,7 +42,7 @@
     <div class="max-w-md">
         <label class="block text-xs font-bold text-gray-500 mb-1">Email <span class="text-red-500">*</span></label>
         <input type="email" name="email" value="{{ old('email', $user->email) }}" required
-               class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
+            class="w-full border-gray-200 rounded-lg px-4 py-2 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
         @if($errors->has('email'))
             <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $errors->first('email') }}</p>
         @endif

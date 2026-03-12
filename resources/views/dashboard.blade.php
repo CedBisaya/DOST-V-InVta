@@ -143,16 +143,6 @@
             </div>
             </div>
         </div>
-
-        <footer class="mt-12 pb-6">
-            <div class="flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-2 text-[11px] text-gray-500 tracking-wide border-t border-gray-200 pt-6">
-                <span class="font-semibold">© {{ date('Y') }} All rights reserved.</span>
-                <span class="hidden md:inline text-gray-300">|</span>
-                <span>Department of Science and Technology - Region V</span>
-                <span class="hidden md:inline text-gray-300">|</span>
-                <span class="text-gray-400">MIS Unit</span>
-            </div>
-        </footer>
         
     </div>
 </x-app-layout>
